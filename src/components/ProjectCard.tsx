@@ -11,7 +11,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <Link
-        to={`/projects/${project.id}`}
+        to={`/projects/detail/${project.id}`}
         style={{ display: "block", textDecoration: "none" }}
       >
         <div

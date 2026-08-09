@@ -2,15 +2,21 @@ import { useParams, Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import StatusStamp from "../components/StatusStamp";
 import LiveDemo from "../components/LiveDemo";
+import CodeViewer from "../components/CodeViewer";
 
 // Sections dans l'ordre de lecture d'un papier de recherche.
-// Numérotées car c'est un ordre de lecture réel, pas décoratif.
 const SECTIONS = [
   { key: "context", label: "Contexte" },
+  { key: "specification", label: "Cahier des charges" },
   { key: "architecture", label: "Architecture" },
   { key: "whatILearned", label: "Ce que j'ai appris" },
   { key: "challenges", label: "Défis rencontrés" },
 ] as const;
+
+const CATEGORY_LABELS = {
+  personal: "Projet personnel",
+  university: "Projet universitaire",
+};
 
 export default function ProjectDetail() {
   const { id } = useParams();
@@ -27,13 +33,14 @@ export default function ProjectDetail() {
 
   return (
     <main className="container" style={{ paddingTop: "var(--space-5)", paddingBottom: "var(--space-6)" }}>
-      <Link to="/" className="eyebrow">
-        ← Tous les projets
+      <Link to={`/projects/${project.category}`} className="eyebrow">
+        ← {CATEGORY_LABELS[project.category]}s
       </Link>
 
       <header style={{ margin: "var(--space-3) 0 var(--space-4) 0" }}>
         <div style={{ display: "flex", gap: "var(--space-2)", alignItems: "center", flexWrap: "wrap" }}>
           <StatusStamp status={project.status} />
+          <span className="eyebrow">{CATEGORY_LABELS[project.category]}</span>
           <span className="eyebrow">{project.year}</span>
         </div>
         <h1 style={{ fontSize: "2.2rem", marginTop: "var(--space-2)" }}>
@@ -85,13 +92,15 @@ export default function ProjectDetail() {
         </section>
       ))}
 
+      <CodeViewer files={project.codeFiles} />
+
       {project.demo && <LiveDemo demo={project.demo} />}
 
       <hr className="rule" />
 
       <footer style={{ display: "flex", gap: "var(--space-3)" }}>
         <a href={project.githubUrl} target="_blank" rel="noreferrer">
-          Voir le code sur GitHub
+          Dépôt GitHub complet
         </a>
         {project.liveDemoUrl && (
           <a href={project.liveDemoUrl} target="_blank" rel="noreferrer">
