@@ -8,7 +8,6 @@ export default function ProjectsList() {
       style={{
         paddingTop: "var(--space-5)",
         paddingBottom: "var(--space-6)",
-        margin: "0",
       }}
     >
       <Link to="/" className="eyebrow">
