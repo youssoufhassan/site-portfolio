@@ -1,27 +1,27 @@
-import type { CodeFile } from "./projects";
+﻿import type { CodeFile } from "./code";
 
 export interface Note {
-  id: string; // utilisé dans l'URL : /notes/:id
+  id: string; // utilisÃ© dans l'URL : /notes/:id
   title: string; // ex: "Algorithme de Dijkstra (plus court chemin)"
   summary: string; // 1-2 phrases
-  explanation: string; // l'explication pédagogique, en texte (peut contenir des sauts de ligne)
-  complexity?: string; // ex: "O(E log V) avec une file de priorité"
+  explanation: string; // l'explication pÃ©dagogique, en texte (peut contenir des sauts de ligne)
+  complexity?: string; // ex: "O(E log V) avec une file de prioritÃ©"
   codeFiles: CodeFile[];
-  sources?: { label: string; url: string }[]; // références utilisées pour apprendre
+  sources?: { label: string; url: string }[]; // rÃ©fÃ©rences utilisÃ©es pour apprendre
 }
 
 export const notes: Note[] = [
   {
     id: "dijkstra-plus-court-chemin",
-    title: "Algorithme de Dijkstra — plus court chemin",
+    title: "Algorithme de Dijkstra â€” plus court chemin",
     summary:
-      "Trouve le plus court chemin entre un sommet source et tous les autres sommets d'un graphe pondéré à poids positifs.",
+      "Trouve le plus court chemin entre un sommet source et tous les autres sommets d'un graphe pondÃ©rÃ© Ã  poids positifs.",
     explanation:
       "Explique ici avec tes mots : le principe (relaxation des distances), " +
-      "pourquoi une file de priorité est utilisée, dans quels cas l'algorithme " +
+      "pourquoi une file de prioritÃ© est utilisÃ©e, dans quels cas l'algorithme " +
       "s'applique (poids positifs uniquement), et une intuition visuelle du " +
-      "fonctionnement étape par étape.",
-    complexity: "O(E log V) avec une file de priorité (tas binaire)",
+      "fonctionnement Ã©tape par Ã©tape.",
+    complexity: "O(E log V) avec une file de prioritÃ© (tas binaire)",
     codeFiles: [
       {
         filename: "dijkstra.py",
@@ -52,5 +52,5 @@ def dijkstra(graph, source):
       { label: "CLRS - Introduction to Algorithms", url: "#" },
     ],
   },
-  // Ajoute d'autres notes ici (autres algos, structures de données, concepts).
+  // Ajoute d'autres notes ici (autres algos, structures de donnÃ©es, concepts).
 ];

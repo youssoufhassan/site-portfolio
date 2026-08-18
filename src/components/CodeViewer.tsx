@@ -1,7 +1,7 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
-import type { CodeFile } from "../data/projects";
+import type { CodeFile } from "../data/code";
 
 /**
  * Affiche un ou plusieurs fichiers de code directement sur la page,

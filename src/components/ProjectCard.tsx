@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { Project } from "../data/projects";
 import StatusStamp from "./StatusStamp";
 
@@ -10,9 +9,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         borderBottom: "1px solid var(--rule)",
       }}
     >
-      <Link
-        to={`/projects/detail/${project.id}`}
-        style={{ display: "block", textDecoration: "none" }}
+      <a
+        href={`/docs/${project.id}.html`}
+        style={{
+          display: "block",
+          textDecoration: "none",
+          color: "inherit",
+        }}
       >
         <div
           style={{
@@ -26,6 +29,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           <h3 style={{ fontSize: "1.25rem", color: "var(--ink)" }}>
             {project.title}
           </h3>
+
           <span
             style={{
               fontFamily: "var(--font-mono)",
@@ -37,7 +41,12 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         </div>
 
-        <p style={{ margin: "var(--space-1) 0", color: "var(--ink-soft)" }}>
+        <p
+          style={{
+            margin: "var(--space-1) 0",
+            color: "var(--ink-soft)",
+          }}
+        >
           {project.summary}
         </p>
 
@@ -51,6 +60,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           }}
         >
           <StatusStamp status={project.status} />
+
           <span
             style={{
               fontFamily: "var(--font-mono)",
@@ -61,7 +71,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             {project.techStack.join(" · ")}
           </span>
         </div>
-      </Link>
+      </a>
     </li>
   );
 }

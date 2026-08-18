@@ -13,58 +13,158 @@ export default function ProjectsList() {
       <Link to="/" className="eyebrow">
         ← Accueil
       </Link>
-      <h1
-        style={{
-          fontSize: "2rem",
-          margin: "var(--space-3) 0 var(--space-2) 0",
-        }}
-      >
-        Projets
-      </h1>
-      <p style={{ maxWidth: "56ch", marginBottom: "var(--space-4)" }}>
-        Voici les projets que j'ai construits, personnels et universitaires.
-        Chacun est documenté avec son cahier des charges, les technologies
-        utilisées et ce que j'en ai retiré.
-      </p>
 
-      <div
+      <header
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "var(--space-4)",
+          marginTop: "var(--space-3)",
+          marginBottom: "var(--space-5)",
+          maxWidth: "68ch",
         }}
       >
-        {projects.map((p, i) => (
-          <div key={p.id}>
-            <a
-              href={`/docs/${p.id}.html`}
-              style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem" }}
-            >
-              {p.title}
-            </a>
-            <span
+        <p style={{ fontSize: "1.05rem", lineHeight: 1.7 }}>
+          Cette page rassemble les projets que j'ai réalisés au cours de mon
+          parcours universitaire et personnel. Ils couvrent différents aspects
+          de l'informatique, de la programmation au développement logiciel, en
+          passant par les systèmes et les réseaux.
+        </p>
+
+        <p
+          style={{
+            marginTop: "var(--space-2)",
+            lineHeight: 1.7,
+          }}
+        >
+          Chaque projet possède sa propre documentation afin de présenter son
+          objectif, son fonctionnement, ses choix techniques, les problèmes
+          rencontrés et les enseignements que j'en ai tirés.
+        </p>
+      </header>
+
+      <section>
+        <p
+          className="eyebrow"
+          style={{
+            marginBottom: "var(--space-2)",
+          }}
+        >
+          Travaux
+        </p>
+
+        <ul
+          style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          {projects.map((project) => (
+            <li
+              key={project.id}
               style={{
-                fontSize: "0.85rem",
-                color: "var(--ink-faint)",
-                marginLeft: "var(--space-1)",
+                borderTop: "1px solid var(--rule)",
               }}
             >
-              — {p.category === "personal" ? "Personnel" : "Universitaire"}
-            </span>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "70px 1fr auto",
+                  gap: "var(--space-2)",
+                  alignItems: "start",
+                  padding: "var(--space-3) 0",
+                }}
+              >
+                {/* Année */}
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.72rem",
+                    color: "var(--ink-faint)",
+                    paddingTop: "0.2rem",
+                  }}
+                >
+                  {project.year}
+                </span>
 
-            <p style={{ margin: "0.4rem 0 0.5rem 0" }}>{p.summary}</p>
+                {/* Informations du projet */}
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "1.2rem",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    {project.title}
+                  </h2>
 
-            <p style={{ fontSize: "0.82rem", color: "var(--ink)", margin: 0 }}>
-              Technologies : {p.techStack.join(", ")} — Compétences acquises :{" "}
-              {p.skillsAcquired.join(", ")}
-            </p>
+                  <p
+                    style={{
+                      maxWidth: "65ch",
+                      fontSize: "0.92rem",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {project.summary}
+                  </p>
 
-            {i < projects.length - 1 && (
-              <hr className="rule" style={{ margin: "var(--space-4) 0 0 0" }} />
-            )}
-          </div>
-        ))}
-      </div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.72rem",
+                      color: "var(--ink-faint)",
+                    }}
+                  >
+                    {project.techStack.join(" · ")}
+                  </span>
+                </div>
+
+                {/* Liens */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    gap: "0.4rem",
+                    paddingTop: "0.2rem",
+                  }}
+                >
+                  <a
+                    href={project.documentationUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.72rem",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Documentation →
+                  </a>
+
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.72rem",
+                      color: "var(--ink-faint)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    GitHub →
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))}
+
+          <li
+            style={{
+              borderTop: "1px solid var(--rule)",
+            }}
+          />
+        </ul>
+      </section>
     </main>
   );
 }

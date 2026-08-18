@@ -1,130 +1,185 @@
 import { Link } from "react-router-dom";
 
+const projects = [
+  {
+    title: "Projet de recherche d'images",
+    description:
+      "Application permettant d'indexer et de rechercher des images à partir de leurs caractéristiques.",
+    stack: "Java · Spring Boot · PostgreSQL",
+  },
+  {
+    title: "Network Traffic Analyzer",
+    description:
+      "Projet consacré à l'analyse et à la compréhension du trafic réseau.",
+    stack: "C · TCP/IP · Wireshark",
+  },
+  {
+    title: "Socket Chat",
+    description:
+      "Application de communication développée autour des sockets et des échanges réseau.",
+    stack: "Python · Sockets · TCP",
+  },
+];
+
+const notes = [
+  {
+    title: "Algorithmes de tri",
+    description:
+      "Comprendre et comparer différents algorithmes de tri à travers leurs implémentations et des expérimentations.",
+  },
+  {
+    title: "Comprendre TCP avec les sockets",
+    description:
+      "Explorer les mécanismes fondamentaux de la communication entre deux programmes.",
+  },
+  {
+    title: "Processus et mémoire sous Linux",
+    description:
+      "Première exploration du fonctionnement des processus et de la gestion de la mémoire.",
+  },
+];
+
 export default function Home() {
   return (
-    <main
-      className="container"
-      style={{ paddingTop: "var(--space-5)", paddingBottom: "var(--space-6)" }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.3fr 1fr",
-          gap: "var(--space-4)",
-          alignItems: "start",
-        }}
-      >
-        <div>
-          <p className="eyebrow">
-            Licence 3 Informatique — Université de Bordeaux
-          </p>
-          <h1
-            style={{
-              fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
-              marginTop: "var(--space-1)",
-              lineHeight: 1.15,
-            }}
-          >
-            Youssouf
-            <br />
-            Hassan
-          </h1>
-          <p
-            style={{
-              maxWidth: "38ch",
-              marginTop: "var(--space-2)",
-              fontSize: "1.05rem",
-            }}
-          >
-            Je comprends en profondeur ce que je construis, plutôt que d'empiler
-            des lignes de code. Ce site documente ce chemin.
-          </p>
-        </div>
+    <main className="home">
+      <div className="home-container">
+        {/* Introduction */}
 
-        <div
-          style={{
-            borderLeft: "1px solid var(--rule)",
-            paddingLeft: "var(--space-3)",
-          }}
-        >
-          <p className="eyebrow" style={{ marginBottom: "var(--space-1)" }}>
-            En ce moment
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.15rem",
-              color: "var(--ink)",
-            }}
-          >
-            [Remplace par ce sur quoi tu travailles vraiment cette semaine.]
-          </p>
-          <Link to="/about">À propos de mon parcours →</Link>
-        </div>
-      </div>
+        <header className="home-intro">
+          <p className="home-kicker">Étudiant en informatique</p>
 
-      <div style={{ height: "var(--space-4)" }} />
+          <h1>Youssouf Hassan</h1>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "var(--space-2)",
-        }}
-      >
-        <Link
-          to="/projects"
-          style={{
-            display: "block",
-            background: "var(--paper-raised)",
-            borderRadius: "10px",
-            padding: "var(--space-3)",
-            textDecoration: "none",
-          }}
-        >
-          <h3 style={{ fontSize: "1.3rem", marginBottom: "4px" }}>Projets</h3>
-          <p style={{ fontSize: "0.9rem", marginBottom: "var(--space-1)" }}>
-            Personnels et universitaires, classés selon leur nature dans chaque
-            cahier des charges.
+          <p className="home-focus">
+            Développement logiciel · Systèmes · Réseaux · Cybersécurité
           </p>
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              color: "var(--ink-faint)",
-            }}
-          >
-            Voir tous les projets →
-          </span>
-        </Link>
 
-        <Link
-          to="/notes"
-          style={{
-            display: "block",
-            background: "var(--paper-raised)",
-            borderRadius: "10px",
-            padding: "var(--space-3)",
-            textDecoration: "none",
-          }}
-        >
-          <h3 style={{ fontSize: "1.3rem", marginBottom: "4px" }}>
-            Documentation
-          </h3>
-          <p style={{ fontSize: "0.9rem", marginBottom: "var(--space-1)" }}>
-            Plusieurs sujets — clique sur celui qui t'intéresse pour le lire en
-            détail.
+          <p className="home-lead">
+            Je m'intéresse au développement logiciel et à la manière dont les
+            logiciels fonctionnent jusque dans leurs couches systèmes, réseaux
+            et sécurité.
           </p>
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.72rem",
-              color: "var(--ink-faint)",
-            }}
+
+          <p>
+            Je construis des projets pour apprendre, expérimenter et comprendre.
+            Je suis actuellement à la recherche d'une opportunité de stage de 4
+            mois en développement logiciel.
+          </p>
+        </header>
+
+        {/* Projets */}
+
+        <section className="home-section">
+          <div className="section-title">
+            <h2>Projets</h2>
+
+            <Link to="/projects">Tous les projets →</Link>
+          </div>
+
+          <div className="projects-grid">
+            {projects.map((project) => (
+              <article className="project-card" key={project.title}>
+                <h3>{project.title}</h3>
+
+                <p className="project-description">{project.description}</p>
+
+                <p className="project-stack">{project.stack}</p>
+
+                <Link to="/projects" className="project-link">
+                  Documentation →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Notes techniques */}
+
+        <section className="home-section">
+          <div className="section-title">
+            <h2>Notes techniques</h2>
+
+            <Link to="/notes">Toutes les notes →</Link>
+          </div>
+
+          <div className="notes-list">
+            {notes.map((note) => (
+              <article className="note-item" key={note.title}>
+                <div>
+                  <h3>{note.title}</h3>
+
+                  <p>{note.description}</p>
+                </div>
+
+                <Link to="/notes">Lire →</Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* En ce moment */}
+
+        <section className="home-section now-section">
+          <div className="section-title">
+            <h2>En ce moment</h2>
+          </div>
+
+          <div className="now-grid">
+            <article className="now-card">
+              <span>Je construis</span>
+
+              <h3>Une plateforme e-commerce</h3>
+
+              <p>
+                Travail autour d'une architecture web complète, du frontend au
+                backend et à la base de données.
+              </p>
+
+              <p className="project-stack">React · Spring Boot · PostgreSQL</p>
+            </article>
+
+            <article className="now-card">
+              <span>J'étudie</span>
+
+              <h3>Algorithmes, systèmes et réseaux</h3>
+
+              <p>
+                J'approfondis progressivement les fondamentaux qui permettent de
+                comprendre ce qui se passe derrière les logiciels que je
+                développe.
+              </p>
+            </article>
+
+            <article className="now-card">
+              <span>Je documente</span>
+
+              <h3>Mes expérimentations techniques</h3>
+
+              <p>
+                Je transforme ce que j'apprends en notes techniques afin de
+                vérifier ma compréhension et de pouvoir y revenir plus tard.
+              </p>
+
+              <Link to="/notes">Parcourir les notes →</Link>
+            </article>
+          </div>
+        </section>
+
+        {/* Liens */}
+
+        <footer className="home-footer">
+          <Link to="/about">À propos</Link>
+
+          <a
+            href="https://github.com/youssoufhassan"
+            target="_blank"
+            rel="noreferrer"
           >
-            Parcourir les sujets →
-          </span>
-        </Link>
+            GitHub
+          </a>
+
+          <Link to="/contact">Contact</Link>
+        </footer>
       </div>
     </main>
   );

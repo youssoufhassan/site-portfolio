@@ -5,59 +5,123 @@ export default function NotesList() {
   return (
     <main
       className="container"
-      style={{ paddingTop: "var(--space-5)", paddingBottom: "var(--space-6)" }}
+      style={{
+        paddingTop: "var(--space-5)",
+        paddingBottom: "var(--space-6)",
+      }}
     >
       <Link to="/" className="eyebrow">
         ← Accueil
       </Link>
 
-      <h1
+      <header
         style={{
-          fontSize: "2rem",
-          margin: "var(--space-3) 0 var(--space-1) 0",
+          marginTop: "var(--space-3)",
+          marginBottom: "var(--space-5)",
+          maxWidth: "68ch",
         }}
       >
-        Documentation — apprentissage
-      </h1>
-      <p style={{ maxWidth: "56ch", marginBottom: "var(--space-4)" }}>
-        Notes techniques sur des algorithmes et concepts que j'étudie, écrites
-        avec mes mots pour vérifier ma propre compréhension.
-      </p>
+        <p
+          style={{
+            fontSize: "1.4rem",
+            lineHeight: 1.5,
+            color: "var(--ink)",
+          }}
+        >
+          Qu'est-ce que j'essaie de comprendre aujourd'hui ?
+        </p>
+      </header>
 
-      <hr className="rule" />
+      <section>
+        <p
+          className="eyebrow"
+          style={{
+            marginBottom: "var(--space-2)",
+          }}
+        >
+          Notes techniques
+        </p>
 
-      <ul>
-        {notes.map((note) => (
-          <li
-            key={note.id}
-            style={{
-              padding: "var(--space-3) 0",
-              borderBottom: "1px solid var(--rule)",
-            }}
-          >
-            <a
-              href={`/docs/notes/${note.id}.html`}
-              style={{ textDecoration: "none", display: "block" }}
+        <ul
+          style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+          }}
+        >
+          {notes.map((note) => (
+            <li
+              key={note.id}
+              style={{
+                borderTop: "1px solid var(--rule)",
+              }}
             >
-              <h3 style={{ fontSize: "1.2rem", color: "var(--ink)" }}>
-                {note.title}
-              </h3>
-              <p style={{ margin: "var(--space-1) 0 0 0" }}>{note.summary}</p>
-              {note.complexity && (
+              <a
+                href={`/docs/notes/${note.id}.html`}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr auto",
+                  gap: "var(--space-3)",
+                  alignItems: "start",
+                  padding: "var(--space-3) 0",
+                  textDecoration: "none",
+                }}
+              >
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "1.15rem",
+                      marginBottom: "0.4rem",
+                      color: "var(--ink)",
+                    }}
+                  >
+                    {note.title}
+                  </h2>
+
+                  <p
+                    style={{
+                      maxWidth: "65ch",
+                      fontSize: "0.92rem",
+                      marginBottom: note.complexity ? "0.5rem" : "0",
+                    }}
+                  >
+                    {note.summary}
+                  </p>
+
+                  {note.complexity && (
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.72rem",
+                        color: "var(--ink-faint)",
+                      }}
+                    >
+                      Complexité : {note.complexity}
+                    </span>
+                  )}
+                </div>
+
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.72rem",
-                    color: "var(--ink-faint)",
+                    whiteSpace: "nowrap",
+                    paddingTop: "0.2rem",
                   }}
                 >
-                  Complexité : {note.complexity}
+                  Lire →
                 </span>
-              )}
-            </a>
-          </li>
-        ))}
-      </ul>
+              </a>
+            </li>
+          ))}
+
+          <li
+            style={{
+              borderTop: "1px solid var(--rule)",
+            }}
+          />
+        </ul>
+      </section>
     </main>
   );
 }
